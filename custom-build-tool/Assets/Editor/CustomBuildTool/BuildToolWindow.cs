@@ -108,24 +108,28 @@ public class BuildToolWindow : EditorWindow
                 return;
         }
 
+        // Check if current platform is different
         if (EditorUserBuildSettings.activeBuildTarget != target)
         {
             bool switchPlatform = EditorUtility.DisplayDialog(
-                "Wrong Platform",
-                $"Project is currently set to {EditorUserBuildSettings.activeBuildTarget}, not {platform}.\n\nDo you want to switch to {platform}?",
+                "Switch Platform?",
+                $"Current build target is {EditorUserBuildSettings.activeBuildTarget}.\n\nDo you want to switch to {platform}?",
                 "Switch", "Cancel"
             );
 
             if (switchPlatform)
-                EditorUserBuildSettings.SwitchActiveBuildTarget(BuildPipeline.GetBuildTargetGroup(target), target);
+            {
+                BuildTargetGroup group = BuildPipeline.GetBuildTargetGroup(target);
+                EditorUserBuildSettings.SwitchActiveBuildTarget(group, target);
+            }
             else
-                return;
+            {
+                return; // Don’t open window if user cancels
+            }
         }
 
-        // After confirming/switching, open the platform-specific build window
-        GenericMenu menu = new GenericMenu();
-        menu.AddItem(new GUIContent("Debug"), false, () => PlatformBuildWindow.Open(platform, "debug"));
-        menu.AddItem(new GUIContent("Release"), false, () => PlatformBuildWindow.Open(platform, "release"));
-        menu.ShowAsContext();
+        // Once platform is correct, open build window
+        PlatformBuildWindow.Open(platform);
     }
+
 }

@@ -2,13 +2,7 @@
     "scriptingSymbols": [
         "DEVELOPER_BUILD",
         "ICLOUD",
-        "APPCENTER",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
+        "APPCENTER"
     ],
     "targetPlatforms": [
         "Android",
