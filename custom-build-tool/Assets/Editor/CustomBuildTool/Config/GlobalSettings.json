@@ -1,0 +1,19 @@
+{
+    "scriptingSymbols": [
+        "DEVELOPER_BUILD",
+        "ICLOUD",
+        "APPCENTER",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "targetPlatforms": [
+        "Android",
+        "iOS",
+        "Standalone",
+        "tvOS"
+    ]
+}

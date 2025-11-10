@@ -1,0 +1,14 @@
+{
+    "symbols": [
+        "DEVELOPER_BUILD",
+        "ICLOUD",
+        "APPCENTER",
+        ""
+    ],
+    "enabled": [
+        true,
+        true,
+        true,
+        false
+    ]
+}
