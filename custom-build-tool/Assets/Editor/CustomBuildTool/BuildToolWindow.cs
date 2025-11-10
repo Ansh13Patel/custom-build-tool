@@ -91,18 +91,57 @@ public class BuildToolWindow : EditorWindow
 
     private void HandlePlatformClick(string platform)
     {
-        BuildTarget target = BuildTarget.NoTarget;
+        BuildTarget target;
 
         switch (platform)
         {
-            case "Android": target = BuildTarget.Android; break;
-            case "iOS": target = BuildTarget.iOS; break;
-            case "tvOS": target = BuildTarget.tvOS; break;
-            case "WebGL": target = BuildTarget.WebGL; break;
-            case "Standalone": target = BuildTarget.StandaloneWindows64; break;
-            case "PS4": target = BuildTarget.PS4; break;
-            case "PS5": target = BuildTarget.PS5; break;
-            case "XboxOne": target = BuildTarget.XboxOne; break;
+            case "Android":
+                target = BuildTarget.Android;
+                break;
+
+            case "iOS":
+                target = BuildTarget.iOS;
+                break;
+
+            case "tvOS":
+                target = BuildTarget.tvOS;
+                break;
+
+            case "WebGL":
+                target = BuildTarget.WebGL;
+                break;
+
+            case "Standalone":
+                switch (Application.platform)
+                {
+                    case RuntimePlatform.OSXEditor:
+                        target = BuildTarget.StandaloneOSX;
+                        break;
+                    case RuntimePlatform.WindowsEditor:
+                        target = BuildTarget.StandaloneWindows64;
+                        break;
+                    case RuntimePlatform.LinuxEditor:
+                        target = BuildTarget.StandaloneLinux64;
+                        break;
+                    default:
+                        target = BuildTarget.StandaloneWindows64; // fallback
+                        Debug.LogWarning("Unknown standalone platform, defaulting to Windows 64-bit");
+                        break;
+                }
+                break;
+
+            case "PS4":
+                target = BuildTarget.PS4;
+                break;
+
+            case "PS5":
+                target = BuildTarget.PS5;
+                break;
+
+            case "XboxOne":
+                target = BuildTarget.XboxOne;
+                break;
+
             default:
                 Debug.LogWarning($"Unsupported platform: {platform}");
                 return;

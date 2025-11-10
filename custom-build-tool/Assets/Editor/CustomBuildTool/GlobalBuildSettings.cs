@@ -92,7 +92,7 @@ public class GlobalBuildSettings : EditorWindow {
         {
             "Android",
             "iOS",
-            "tvOS",       // ✅ added tvOS here
+            "tvOS",     
             "Standalone",
             "WebGL",
             "PS4",
